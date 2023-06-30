@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:5.7
+    container_name: sampleProject_db
+    platform: linux/x86_64
+    env_file:
+      - .env
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./tmp/db:/var/lib/mysql
+
+  web:
+    build: .
+    platform: linux/x86_64
+    image: academy/web
+    container_name: academy_web
+    env_file:
+      - .env
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db

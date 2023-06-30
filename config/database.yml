@@ -1,0 +1,34 @@
+default: &default
+  adapter: mysql2
+  charset: utf8mb4
+  encoding: utf8mb4
+  collation: utf8mb4_bin
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: sampleProject_development
+  username: <%= ENV["MYSQL_ROOT_USER"] || "root" %>
+  password: <%= ENV["MYSQL_ROOT_PASSWORD"] %>
+  host: <%= ENV["MYSQL_HOST"] || "db" %>
+
+test:
+  <<: *default
+  database: sampleProject_test
+  username: root
+  password: <%= ENV["MYSQL_ROOT_PASSWORD"] %>
+  host: <%= ENV["MYSQL_HOST"] || "db" %>
+
+staging:
+  <<: *default
+  database: sampleProject_staging
+  username: root
+  password: <%= ENV["MYSQL_ROOT_PASSWORD"] %>
+  host: <%= ENV["MYSQL_HOST"] || "db" %>
+
+production:
+  <<: *default
+  database: sampleProject
+  username: <%= ENV["MYSQL_ROOT_USER"] || "housecraft" %>
+  password: <%= ENV["MYSQL_ROOT_PASSWORD"] %>
+  host: <%= ENV["MYSQL_HOST"] || "db" %>

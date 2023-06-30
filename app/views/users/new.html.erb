@@ -1,0 +1,23 @@
+<% provide(:title, 'Sign up') %>
+<h1>Sign up</h1>
+
+<p> This is where you sign up. Enter your name and a colour of preference. </p>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @user) do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <p> Your text will appear in: <br>
+    
+    
+      <input type="radio" name="colour" value="black" checked>
+     Black <br>
+      <input type="radio" name="colour" value="random">
+     Surprise me! </p>
+
+      <%= f.submit "Continue", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
